@@ -47,10 +47,8 @@ class UsuariosController {
             password: hashedPassword,
         });
 
-        // uma vez que o objeto foi criado, a gente pode salvá-lo no banco de dados
         await usuariosRepository.save(user);
 
-        // e agora retornamos para o arquivo de rotas o objeto user
         return user;
     }
 }

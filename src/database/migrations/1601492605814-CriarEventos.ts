@@ -5,12 +5,11 @@ import {
     TableForeignKey,
 } from 'typeorm';
 
-export default class CriarAgendamentos1599270477355
-    implements MigrationInterface {
+export default class CriarEventos1601492605814 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: 'agendamentos',
+                name: 'eventos',
                 columns: [
                     {
                         name: 'id',
@@ -20,13 +19,21 @@ export default class CriarAgendamentos1599270477355
                         default: 'uuid_generate_v4()',
                     },
                     {
-                        name: 'prestador_servico_id',
+                        name: 'dono_evento_id',
                         type: 'uuid',
                         isNullable: true,
                     },
                     {
-                        name: 'data',
-                        type: 'timestamp with time zone',
+                        name: 'nome',
+                        type: 'varchar',
+                    },
+                    {
+                        name: 'local',
+                        type: 'varchar',
+                    },
+                    {
+                        name: 'comentario',
+                        type: 'varchar',
                     },
                     {
                         name: 'created_at',
@@ -43,9 +50,9 @@ export default class CriarAgendamentos1599270477355
         );
 
         await queryRunner.createForeignKey(
-            'agendamentos',
+            'eventos',
             new TableForeignKey({
-                columnNames: ['prestador_servico_id'],
+                columnNames: ['dono_evento_id'],
                 referencedColumnNames: ['id'],
                 referencedTableName: 'usuarios',
                 onDelete: 'SET NULL',
@@ -55,6 +62,6 @@ export default class CriarAgendamentos1599270477355
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('agendamentos');
+        await queryRunner.dropTable('eventos');
     }
 }

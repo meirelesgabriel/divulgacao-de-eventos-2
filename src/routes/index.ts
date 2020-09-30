@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 // importar o arquivo de rotas dos usuarios
 import usuariosRouter from './usuarios.routes';
-import agendamentosRouter from './agendamentos.routes';
+import eventosRouter from './eventos.routes';
 import sessionsRouter from './sessions.routes';
 
 const routes = Router();
@@ -15,7 +15,7 @@ routes.use('/usuarios', usuariosRouter);
     response.json({ message: 'Hello World.' }),
 ); */
 
-routes.use('/agendamentos', agendamentosRouter);
+routes.use('/eventos', eventosRouter);
 routes.use('/sessions', sessionsRouter);
 
 export default routes;

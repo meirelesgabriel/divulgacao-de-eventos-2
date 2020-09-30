@@ -19,12 +19,20 @@ export default function ensureAuthenticated(
     }
 
     const [, token] = authHeader.split(' ');
-    try {
+    /* try {
         const decoded = verify(token, authConfig.jwt.secret);
         const { sub } = decoded as TokenPayload;
-        request.user = { id: sub };
+        // request.user = { id: sub };
         return next();
     } catch {
         throw new Error('Token JWT inválido.');
+    } */
+    try {
+        const decode = verify(token, authConfig.jwt.secret);
+        const { sub } = decode as TokenPayload;
+        // request.user = { id: sub };
+        return next();
+    } catch {
+        throw new Error('invalid token');
     }
 }
